@@ -5,12 +5,12 @@
  * DS207: Consider shorter variations of null checks
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
+
 const logger = require('logger-sharelatex')
 const settings = require('settings-sharelatex')
 
 const Server = require('./app/js/server')
 
-if (!module.parent) {
   // Called directly
   const port =
     __guard__(
@@ -28,12 +28,41 @@ if (!module.parent) {
     }
     return logger.info(`Chat starting up, listening on ${host}:${port}`)
   })
-}
 
-module.exports = Server.server
+// module.exports = Server.server
 
 function __guard__(value, transform) {
   return typeof value !== 'undefined' && value !== null
     ? transform(value)
     : undefined
+}
+
+exports.main = test
+function test(params = {}) {
+  // params e.g.: {
+  //  url: '/user/5e9723ee71ffbe00909ed452/contacts',
+  //  method: 'get',
+  // }
+  
+  const url = params.__ow_path || '/project/5ee9ea6bd9085c0007b38bfe/messages';
+  const method = params.__ow_method || 'get';
+
+  const { promisify } = require('util')
+  const request = require("request")
+  const reqPromise = promisify(request[method]);
+
+  return (async () => {
+    const result = await reqPromise({
+      url: `http://${host}:${port}${url}`,
+      json: params
+    })
+    return result
+  })();
+}
+
+if (!module.parent) {
+  (async ()=>{
+    let a = await test();
+    console.log(a);
+  })();
 }
