@@ -1,11 +1,22 @@
 {
-  "name": "serverless-chat",
-  "author": "Zevin",
-  "description": "The backend API for serverless chat",
+  "name": "chat-sharelatex",
+  "version": "0.1.4",
+  "description": "The backend API that powers ShareLaTeX chat",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sharelatex/serverless-chat.git"
+    "url": "https://github.com/sharelatex/chat-sharelatex.git"
+  },
+  "scripts": {
+    "start": "node $NODE_APP_OPTIONS app.js",
+    "test:acceptance": "npm run test:acceptance:_run -- --grep=$MOCHA_GREP",
+    "test:unit": "npm run test:unit:_run -- --grep=$MOCHA_GREP",
+    "nodemon": "nodemon --config nodemon.json",
+    "test:acceptance:_run": "mocha --recursive --reporter spec --timeout 15000 --exit $@ test/acceptance/js",
+    "test:unit:_run": "mocha --recursive --reporter spec $@ test/unit/js",
+    "lint": "node_modules/.bin/eslint .",
+    "format": "node_modules/.bin/prettier-eslint '**/*.js' --list-different",
+    "format:fix": "node_modules/.bin/prettier-eslint '**/*.js' --write"
   },
   "dependencies": {
     "async": "0.2.9",
