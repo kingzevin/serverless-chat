@@ -2,7 +2,7 @@
   "name": "chat-sharelatex",
   "version": "0.1.4",
   "description": "The backend API that powers ShareLaTeX chat",
-  "main": "app.js",
+  "main": "handler.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/sharelatex/chat-sharelatex.git"
