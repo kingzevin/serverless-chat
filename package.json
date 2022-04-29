@@ -19,7 +19,7 @@
     "format:fix": "node_modules/.bin/prettier-eslint '**/*.js' --write"
   },
   "dependencies": {
-    "async": "0.2.9",
+    "async": "2.6.4",
     "express": "3.3.1",
     "logger-sharelatex": "^1.7.0",
     "metrics-sharelatex": "^2.2.0",
